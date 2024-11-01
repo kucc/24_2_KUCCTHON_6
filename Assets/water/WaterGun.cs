@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class WaterGun : MonoBehaviour
 {
-    public GameObject waterPrefab;       // 물 발사체 프리팹
-    public Transform firePoint;          // 발사 지점
-    public float waterSpeed = 270f;       // 발사 속도
-    public float fireInterval = 0.05f;    // 발사 간격 (초)
-    public float angleStep = 5f;         // 각도 조절 단위
-    public float lineLength = 2f;        // 보조선 길이
+    public GameObject waterPrefab;          // 물 발사체 프리팹
+    public Transform firePoint;             // 물 발사 시작 지점
+    public float waterSpeed = 270f;          // 발사 속도
+    public float fireInterval = 0.05f;       // 발사 간격
+    public float angleStep = 5f;            // 각도 조절 단위
+    public float lineLength = 2f;           // 보조선 길이 (사다리 길이와 동일하게 설정)
 
-    public SpriteRenderer angleLineSprite; // 보조선 스프라이트
-    private float fireAngle = 0f;        // 발사 각도
-    private float fireTimer;             // 발사 간격 타이머
-    private bool isFiring = false;       // 발사 중 여부
+    public SpriteRenderer ladderSprite;     // 사다리 스프라이트
+    public Transform shootPos;              // 물 발사 위치 오브젝트
+    private float fireAngle = 0f;           // 발사 각도
+    private float fireTimer;                // 발사 간격 타이머
+    private bool isFiring = false;          // 발사 여부
 
     void Start()
     {
-        // 스프라이트 크기 설정 (lineLength에 맞게)
-        angleLineSprite.size = new Vector2(lineLength, angleLineSprite.size.y);
-        UpdateFireAngleLine(); // 초기 위치 설정
+        ladderSprite.size = new Vector2(lineLength, ladderSprite.size.y); // 사다리 크기 조정
+        UpdateLadderAndShootPos(); // 초기 위치 설정
     }
 
     void Update()
@@ -53,7 +53,7 @@ public class WaterGun : MonoBehaviour
             }
         }
 
-        UpdateFireAngleLine();
+        UpdateLadderAndShootPos();
     }
 
     void FireWater()
@@ -61,16 +61,24 @@ public class WaterGun : MonoBehaviour
         float radians = fireAngle * Mathf.Deg2Rad;
         Vector2 fireDirection = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)).normalized;
 
-        GameObject water = Instantiate(waterPrefab, firePoint.position, Quaternion.identity);
+        GameObject water = Instantiate(waterPrefab, shootPos.position, Quaternion.identity);
         Rigidbody2D waterRb = water.GetComponent<Rigidbody2D>();
 
         waterRb.linearVelocity = fireDirection * waterSpeed;
     }
 
-    void UpdateFireAngleLine()
+    void UpdateLadderAndShootPos()
     {
-        // fireAngle에 맞춰 보조선 위치와 회전 조정
-        angleLineSprite.transform.position = firePoint.position; // firePoint 위치에 맞춤
-        angleLineSprite.transform.rotation = Quaternion.Euler(0, 0, fireAngle); // Z축 기준 회전
+        // 사다리 각도에 따라 회전
+        ladderSprite.transform.position = firePoint.position; // 사다리 시작 지점은 firePoint
+        ladderSprite.transform.rotation = Quaternion.Euler(0, 0, fireAngle); // 사다리 각도 조정
+
+        // ladderSprite의 실제 크기 가져오기
+        float ladderLength = ladderSprite.bounds.size.x;
+
+        // 사다리 오른쪽 끝에 shootPos 위치 업데이트
+        float radians = fireAngle * Mathf.Deg2Rad;
+        Vector2 ladderEndPos = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * ladderLength; // 사다리 끝점 계산
+        shootPos.position = (Vector2)firePoint.position + ladderEndPos;
     }
 }

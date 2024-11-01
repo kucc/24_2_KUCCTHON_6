@@ -2,39 +2,34 @@ using UnityEngine;
 
 public class CollisionDetecter : MonoBehaviour
 {
-    // Reference to the Flame GameObject and its ParticleSystem
-    public GameObject flame;
+    public GameObject flame; // Flame GameObject
     private ParticleSystem flameParticles;
-    public float reductionAmount = 0.1f; // Amount to reduce the emission each time
-    private float currentEmission = 1.0f; // Initial emission rate (normalized)
+    public float reductionAmount = 1f; // Amount to reduce emission rate each time
 
     void Start()
     {
-        // Get the ParticleSystem component from the Flame object
         if (flame != null)
         {
             flameParticles = flame.GetComponent<ParticleSystem>();
         }
     }
 
-    // Called when another collider enters the trigger collider attached to this object
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if the object we collided with has the tag "Water"
         if (collision.gameObject.CompareTag("Water"))
         {
-            // Reduce the emission of the flame
-            if (flameParticles != null && currentEmission > 0)
+            if (flameParticles != null)
             {
-                currentEmission -= reductionAmount;
-                currentEmission = Mathf.Clamp(currentEmission, 0, 1); // Clamp to ensure it doesn't go below 0
-
-                // Update the emission rate
+                // 현재 emission 값을 가져와서 1씩 감소
                 var emission = flameParticles.emission;
-                emission.rateOverTime = emission.rateOverTime.constant * currentEmission;
+                float currentEmissionRate = emission.rateOverTime.constant;
 
-                // If the emission reaches 0, disable the flame
-                if (currentEmission <= 0)
+                // 감소시키고 Clamp로 최소값을 0으로 설정
+                currentEmissionRate = Mathf.Max(0, currentEmissionRate - reductionAmount);
+                emission.rateOverTime = currentEmissionRate;
+
+                // emission rate가 0에 도달하면 불꽃 비활성화
+                if (currentEmissionRate <= 0)
                 {
                     flame.SetActive(false);
                     Debug.Log("Flame has been completely extinguished!");

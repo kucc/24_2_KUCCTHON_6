@@ -5789,13 +5789,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082687671}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
+  m_LocalScale: {x: -1.1, y: -1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1839889461}
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -428, y: -183.7}
@@ -5844,7 +5844,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1082687674}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2086718730}
+        m_TargetAssemblyTypeName: WaterGunClick, Assembly-CSharp
+        m_MethodName: AngleDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1082687674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10627,13 +10639,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419636149}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.43, y: 1.16, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.10452846, w: 0.9945219}
+  m_LocalPosition: {x: 8.44, y: 0.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.20058759}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 905820969}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 12}
 --- !u!212 &1419636151
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11515,7 +11527,9 @@ MonoBehaviour:
   waterSpeed: 800
   fireInterval: 0.05
   angleStep: 5
+  lineLength: 2
   angleLineSprite: {fileID: 1419636151}
+  ladderHinge: {fileID: 905820970}
   upButton: {fileID: 985060230}
   downButton: {fileID: 1082687673}
   shootButton: {fileID: 1809137826}

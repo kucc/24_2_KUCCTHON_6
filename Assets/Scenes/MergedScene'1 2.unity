@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 569072600}
   - component: {fileID: 569072599}
   - component: {fileID: 569072598}
+  - component: {fileID: 569072601}
   m_Layer: 0
   m_Name: Flame
   m_TagString: Flame
@@ -5065,7 +5066,7 @@ Transform:
   m_GameObject: {fileID: 569072597}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5205556, y: -0.4785623, z: 0.4785623, w: 0.5205556}
-  m_LocalPosition: {x: 5998.2217, y: 881.6135, z: -1}
+  m_LocalPosition: {x: 6740.2217, y: 1360.6135, z: -1}
   m_LocalScale: {x: 123.29342, y: 123.29342, z: 125.99355}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5073,6 +5074,20 @@ Transform:
   - {fileID: 1002910288}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -4.813, y: -90, z: 90}
+--- !u!114 &569072601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569072597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5304ee5c3e5da43439e0d2973e0378a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 250
+  range: 500
 --- !u!1 &741412819
 GameObject:
   m_ObjectHideFlags: 0
@@ -5132,7 +5147,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 120.26577
+  field of view: 129.17006
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -5159,7 +5174,7 @@ Transform:
   m_GameObject: {fileID: 741412819}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4733, y: 198, z: -803}
+  m_LocalPosition: {x: 5206, y: 317, z: -803}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10527,6 +10542,7 @@ GameObject:
   - component: {fileID: 1934627589}
   - component: {fileID: 1934627588}
   - component: {fileID: 1934627587}
+  - component: {fileID: 1934627591}
   m_Layer: 0
   m_Name: SM_FX_Skydome_Planet_02
   m_TagString: Untagged
@@ -10632,12 +10648,26 @@ Transform:
   m_GameObject: {fileID: 1934627586}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 6223, y: 862, z: 0}
+  m_LocalPosition: {x: 6965, y: 1341, z: 0}
   m_LocalScale: {x: 2.11845, y: 2.11845, z: 2.11845}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1934627591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934627586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5304ee5c3e5da43439e0d2973e0378a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 250
+  range: 500
 --- !u!1 &1976523065
 GameObject:
   m_ObjectHideFlags: 0

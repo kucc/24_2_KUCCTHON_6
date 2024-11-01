@@ -65,6 +65,8 @@ public class WaterGunClick : MonoBehaviour
     public void AngleDown()
     {
         fireAngle -= angleStep;
+
+        Debug.Log("fwefwe");
     }
 
     // 발사 함수

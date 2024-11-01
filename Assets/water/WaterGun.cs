@@ -77,7 +77,8 @@ public class WaterGun : MonoBehaviour
         GameObject water = Instantiate(waterPrefab, firePoint.position, Quaternion.identity);
         Rigidbody2D waterRb = water.GetComponent<Rigidbody2D>();
 
-        waterRb.linearVelocity = fireDirection * waterSpeed;
+        // 힘을 가해 물 발사체를 발사
+        waterRb.AddForce(fireDirection * waterSpeed, ForceMode2D.Impulse);
     }
 
     void UpdateFireAngleLine()

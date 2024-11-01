@@ -71,7 +71,7 @@ public class WaterGun : MonoBehaviour
 
     void FireWater()
     {
-        float radians = fireAngle * Mathf.Deg2Rad;
+        float radians = (fireAngle+12) * Mathf.Deg2Rad;
         Vector2 fireDirection = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)).normalized;
 
         GameObject water = Instantiate(waterPrefab, firePoint.position, Quaternion.identity);
@@ -84,8 +84,9 @@ public class WaterGun : MonoBehaviour
     {
         // fireAngle에 맞춰 보조선 위치와 회전 조정
         angleLineSprite.transform.position = firePoint.position; // firePoint 위치에 맞춤
-        angleLineSprite.transform.rotation = Quaternion.Euler(0, 0, fireAngle); // Z축 기준 회전
+        angleLineSprite.transform.rotation = Quaternion.Euler(0, 0, fireAngle+12); // Z축 기준 회전
     }
+
 
     void UpdateLadderAngle()
     {

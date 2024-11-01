@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class GravityController : MonoBehaviour
 {
     public List<GravityZone> gravityZones;  // 중력 영역 리스트
-    public Rigidbody body;  // 중력의 영향을 받을 오브젝트
+    public Rigidbody2D body;  // 중력의 영향을 받을 2D 오브젝트
 
     void FixedUpdate()
     {
@@ -16,7 +16,7 @@ public class GravityController : MonoBehaviour
         {
             if (zone.IsWithinGravityZone(body.position))
             {
-                float distance = Vector3.Distance(zone.gravityCenter.position, body.position);
+                float distance = Vector2.Distance(zone.gravityCenter.position, body.position);
                 if (distance < nearestDistance)
                 {
                     nearestDistance = distance;
@@ -28,10 +28,10 @@ public class GravityController : MonoBehaviour
         // 가장 가까운 중력 중심으로 끌어당기는 힘을 적용
         if (nearestZone != null)
         {
-            Vector3 gravityForce = nearestZone.GetGravityForce(body.transform);
-            
+            Vector2 gravityForce = nearestZone.GetGravityForce(body.transform);
+
             Debug.Log(gravityForce);
-            body.AddForce(gravityForce, ForceMode.Acceleration);
+            body.AddForce(gravityForce, ForceMode2D.Force);
         }
     }
 }

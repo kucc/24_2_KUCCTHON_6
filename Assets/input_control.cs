@@ -13,14 +13,28 @@ public class input_control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Get input from the horizontal and vertical axes
-        float moveHorizontal = Input.GetAxis("Horizontal"); // A/D keys or Left/Right arrow keys
-        float moveVertical = Input.GetAxis("Vertical");     // W/S keys or Up/Down arrow keys
+        // Create a new Vector3 to store movement
+        Vector3 movement = Vector3.zero;
 
-        // Create a new Vector3 movement based on the input
-        Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0);
+        // Check for arrow key input and adjust movement accordingly
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            movement += Vector3.up; // Move up
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            movement += Vector3.down; // Move down
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            movement += Vector3.left; // Move left
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            movement += Vector3.right; // Move right
+        }
 
         // Move the object using the transform component
-        transform.Translate(movement * speed * Time.deltaTime);
+        transform.position += movement * speed * Time.deltaTime;
     }
 }

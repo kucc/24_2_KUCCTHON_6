@@ -7,6 +7,7 @@ TagManager:
   - Static
   - Square
   - Flame
+  - Water
   layers:
   - Default
   - TransparentFX

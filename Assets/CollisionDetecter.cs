@@ -20,8 +20,8 @@ public class CollisionDetecter : MonoBehaviour
     // Called when another collider enters the trigger collider attached to this object
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if the object we collided with has the tag "Square"
-        if (collision.gameObject.CompareTag("Square"))
+        // Check if the object we collided with has the tag "Water"
+        if (collision.gameObject.CompareTag("Water"))
         {
             // Reduce the emission of the flame
             if (flameParticles != null && currentEmission > 0)
